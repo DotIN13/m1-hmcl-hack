@@ -16,7 +16,7 @@ VERSIONS = [
   # 1.17 forge runs with java 17 or newer, unofficial lwjgl 3.2.1 native jars, and modified dylibs.
   # 1.15 forge runs with java 8 to 11, unofficial lwjgl 3.2.1 native jars, and modified dylibs.
   {
-    versions: ['1.17', '1.15'],
+    versions: ['1.17', '1.15', '1.14', '1.13'],
     classpath: {
       remove: ['org/lwjgl'],
       append: ['./libraries/lwjgl-3.2.3']
@@ -53,7 +53,7 @@ def select_config
   config = nil
   version = assets_version
   config = VERSIONS[0] if ['1.18', '1.16'].include? version
-  config = VERSIONS[1] if ['1.17', '1.15'].include? version
+  config = VERSIONS[1] if ['1.17', '1.15', '1.14', '1.13'].include? version
   config = VERSIONS[2] if Gem::Version.new(version) <= Gem::Version.new('1.12')
   puts "Launching minecraft #{version}, using config for minecraft #{config[:versions].join(' and ')}." if config
   puts "No extra libraries needed for minecraft #{version}, launching directly." if config.nil?
