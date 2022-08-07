@@ -1,6 +1,7 @@
 require 'shellwords'
 require 'json'
 require 'pathname'
+require 'benchmark'
 
 # 1.19 vanilla works out of the box with java 17 or newer, and hence is not in need of this wrapper.
 VERSIONS = [
@@ -94,4 +95,10 @@ def rebuild_args
 end
 
 rebuild_args
-system(ARGV.shelljoin)
+
+time = Benchmark.measure do
+  system(ARGV.shelljoin)
+end
+
+file = File.open('./timer', 'a')
+file.write "#{ENV['INST_ID']}: #{time}"
