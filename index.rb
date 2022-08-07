@@ -94,4 +94,4 @@ def rebuild_args
 end
 
 rebuild_args
-system(ARGV.shelljoin)
+exec ARGV.shelljoin
